@@ -1,0 +1,17 @@
+{
+ "run": "tf-ul",
+ "variant": "tf",
+ "ckpt_step": 1500,
+ "size_fp32_bytes": 13781074,
+ "size_fp16_bytes": 7025359,
+ "size_bitpacked_bytes": 711584,
+ "binary_params": 3309568,
+ "nonbinary_params": 133376,
+ "max_logit_diff": 0.011259078979492188,
+ "greedy_tokens_matched": [
+  41,
+  64,
+  64
+ ],
+ "greedy_tokens_total": 64
+}

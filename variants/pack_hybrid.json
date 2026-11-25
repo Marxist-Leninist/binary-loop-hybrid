@@ -1,0 +1,17 @@
+{
+ "run": "hybrid",
+ "variant": "hybrid",
+ "ckpt_step": 1500,
+ "size_fp32_bytes": 13817930,
+ "size_fp16_bytes": 7046919,
+ "size_bitpacked_bytes": 757706,
+ "binary_params": 3299328,
+ "nonbinary_params": 150912,
+ "max_logit_diff": 0.013467788696289062,
+ "greedy_tokens_matched": [
+  64,
+  64,
+  64
+ ],
+ "greedy_tokens_total": 64
+}
