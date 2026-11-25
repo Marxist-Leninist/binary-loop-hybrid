@@ -1,5 +1,55 @@
 [
  {
+  "run": "hybrid",
+  "variant": "hybrid",
+  "unlikelihood": false,
+  "params": 3450240,
+  "binary_latent_params": 3299328,
+  "steps": 1500,
+  "final_loss": 1.1295,
+  "final_ema_loss": 1.1459,
+  "tok_s": 4095.8,
+  "kv_bytes_per_token": 9216,
+  "ssm_state_bytes": 50688,
+  "samples": {
+   "Once upon a time": {
+    "text": "Once upon a time there was a big from the boy who loved to start a big boy. He was so happy to his friend and said yes and started to see the bird was so happy to his friend and she was so happy.\nOnce upon a time, there was a little girl named Jack who liked to stay in the store. One day he was a big by for helping in the store. He was so happy and he was so happy to help her mom and he was so happy to help her toy and he was so happy to help her toy and he was so happy to help her toy and he saw a big by the bird was so h",
+    "repeat4": 276,
+    "n_grams": 509
+   },
+   "The ": {
+    "text": "The little girl was so happy that he was so happy to help her friends and she was so happy to help her friends and started to start a big special the bird and she was so happy that he was so happy that he was so happy to help her friends and she was so happy to help her friends. He was so happy to his friend him and he was so happy to his friend him and he was so happy to his friend him and he was so happy to his friend him and he was so happy to his friend him and he was so happy to his friend him and he was s",
+    "repeat4": 394,
+    "n_grams": 509
+   }
+  }
+ },
+ {
+  "run": "mamba",
+  "variant": "mamba",
+  "unlikelihood": false,
+  "params": 3437176,
+  "binary_latent_params": 3244416,
+  "steps": 1500,
+  "final_loss": 1.3469,
+  "final_ema_loss": 1.3719,
+  "tok_s": 846.3,
+  "kv_bytes_per_token": 0,
+  "ssm_state_bytes": 524832,
+  "samples": {
+   "Once upon a time": {
+    "text": "Once upon a time to the park and the far and the for a big for a big friends. He was a big for a big for a big for and the beach and the for a brice and the boy and the beach and the beach and the for a big bear and the found a bick to the store. He was a big beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the be",
+    "repeat4": 416,
+    "n_grams": 509
+   },
+   "The ": {
+    "text": "The little boy and the park and the park and the for a big for a big friends. He was a big for a big for a big for and the beach and the for a brice and the boy and the beach and the beach and the for a big bear and the found a bick to the store. He was a big beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beac",
+    "repeat4": 414,
+    "n_grams": 509
+   }
+  }
+ },
+ {
   "run": "tf-base",
   "variant": "tf",
   "unlikelihood": false,
@@ -45,31 +95,6 @@
    "The ": {
     "text": "The the big to bect the cared to the bettle thing to bettle the becight. The better to thing the bect toome the bett wird toy the bett toome thinget the beack.\n\nThe was so thime thinge bround to to the thime to bething the bett wir and th the bround to the bet to the beard. He was so he beard this thing the beart and thing the beart way to thing the beart and the beart to thing this way a bet to thing the bearoun.\n\nThe was so he brack a thime this way a bet to thime thing the bearoun. He was so he beard thing t",
     "repeat4": 340,
-    "n_grams": 509
-   }
-  }
- },
- {
-  "run": "hybrid",
-  "variant": "hybrid",
-  "unlikelihood": false,
-  "params": 3450240,
-  "binary_latent_params": 3299328,
-  "steps": 1500,
-  "final_loss": 1.1295,
-  "final_ema_loss": 1.1459,
-  "tok_s": 4095.8,
-  "kv_bytes_per_token": 9216,
-  "ssm_state_bytes": 50688,
-  "samples": {
-   "Once upon a time": {
-    "text": "Once upon a time there was a big from the boy who loved to start a big boy. He was so happy to his friend and said yes and started to see the bird was so happy to his friend and she was so happy.\nOnce upon a time, there was a little girl named Jack who liked to stay in the store. One day he was a big by for helping in the store. He was so happy and he was so happy to help her mom and he was so happy to help her toy and he was so happy to help her toy and he was so happy to help her toy and he saw a big by the bird was so h",
-    "repeat4": 276,
-    "n_grams": 509
-   },
-   "The ": {
-    "text": "The little girl was so happy that he was so happy to help her friends and she was so happy to help her friends and started to start a big special the bird and she was so happy that he was so happy that he was so happy to help her friends and she was so happy to help her friends. He was so happy to his friend him and he was so happy to his friend him and he was so happy to his friend him and he was so happy to his friend him and he was so happy to his friend him and he was so happy to his friend him and he was s",
-    "repeat4": 394,
     "n_grams": 509
    }
   }

@@ -1,0 +1,17 @@
+{
+ "run": "mamba",
+ "variant": "mamba",
+ "ckpt_step": 1500,
+ "size_fp32_bytes": 13772872,
+ "size_fp16_bytes": 7026821,
+ "size_bitpacked_bytes": 848362,
+ "binary_params": 3244416,
+ "nonbinary_params": 192760,
+ "max_logit_diff": 0.015535354614257812,
+ "greedy_tokens_matched": [
+  64,
+  64,
+  64
+ ],
+ "greedy_tokens_total": 64
+}

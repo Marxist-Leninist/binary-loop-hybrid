@@ -68,3 +68,26 @@ state (AdamW moments, 2× fp32 per parameter) does not shrink at all.
 - `pack_inference.py` — bit-packing + size comparison + parity check
 - `dashboard2.py` — multi-run live dashboard (stdlib HTTP, auto-refresh)
 - `results.json` / `pack_*.json` — measured outcomes of the runs above
+
+## Measured results (1,500 matched steps, seed 1234, GTX 1660 SUPER)
+
+| run | params | final CE | EMA CE | repeat-4 ("Once upon a time") | repeat-4 ("The ") | state per token |
+|---|---|---|---|---|---|---|
+| A. tf-base | 3,442,944 | 1.6075 | 1.6265 | 362/509 | 443/509 | KV 12,288 B, grows |
+| A'. tf-ul | 3,442,944 | 1.7243 | 1.7536 | 310/509 | 340/509 | KV 12,288 B, grows |
+| B. mamba | 3,437,176 | 1.3469 | 1.3719 | 416/509 | 414/509 | SSM 524,832 B, constant |
+| C. hybrid | 3,450,240 | 1.1295 | 1.1459 | 276/509 | 394/509 | KV 9,216 B + SSM 50,688 B const |
+
+Unlikelihood A/B: repeat-4 counts fell 14% ("Once upon a time") and 23%
+("The ") with the penalty on, at a cost of +0.13 EMA CE. It reduces
+repetition; it does not eliminate it at this scale.
+
+Bit-packed inference sizes (same weights, three formats):
+
+| run | fp32 | fp16 | bit-packed | max logit diff after reload | greedy tokens matched |
+|---|---|---|---|---|---|
+| tf-base / tf-ul | 13,781,074 | 7,025,359 | 711,584 | ~0.012 | 64/64, 64/64, 64/64 (tf-ul: 41/64 on one prompt) |
+| mamba | 13,772,872 | 7,026,821 | 848,362 | 0.0155 | 64/64 x3 |
+| hybrid | 13,817,930 | 7,046,919 | 757,706 | 0.0135 | 64/64 x3 |
+
+Full per-run detail: `results.json`, `pack_<run>.json`.
