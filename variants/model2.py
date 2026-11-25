@@ -69,10 +69,16 @@ class BinarySSMBlock(nn.Module):
             dtbc, [self.dt_rank, self.d_state, self.d_state], dim=-1)
         dt = F.softplus(self.dt_proj(dt_r.float()))
         A = -torch.exp(self.A_log.float())
-        a = torch.exp(dt.unsqueeze(-1) * A)
-        u = (dt.unsqueeze(-1) * Bv.float().unsqueeze(2)) * x_.float().unsqueeze(-1)
-        h = associative_scan(a, u)
-        y = (h * Cv.float().unsqueeze(2)).sum(-1)
+        if os.environ.get("BLH_FAST_SCAN") == "1":
+            from scan_fast import fused_selective_scan
+            y = fused_selective_scan(
+                dt, Bv, Cv, x_, A,
+                chunk=int(os.environ.get("BLH_SCAN_CHUNK", "32")))
+        else:
+            a = torch.exp(dt.unsqueeze(-1) * A)
+            u = (dt.unsqueeze(-1) * Bv.float().unsqueeze(2)) * x_.float().unsqueeze(-1)
+            h = associative_scan(a, u)
+            y = (h * Cv.float().unsqueeze(2)).sum(-1)
         y = y + self.D.float() * x_.float()
         y = (y * F.silu(z.float())).to(residual.dtype)
         return residual + self.out_proj(y)
@@ -89,7 +95,8 @@ class LoopedBinarySSMBlock(nn.Module):
 
     def forward(self, x):
         for _ in range(self.loops):
-            if os.environ.get("BLH_NO_CKPT") == "1":
+            if os.environ.get("BLH_NO_CKPT") == "1" \
+                    or os.environ.get("BLH_FAST_SCAN") == "1":
                 x = self.block(x)
             else:
                 x = torch.utils.checkpoint.checkpoint(
@@ -118,7 +125,8 @@ class _LMShell(nn.Module):
         x = self.tok_emb(idx) + self.pos_emb(pos).unsqueeze(0)
         for blk in self.blocks:
             if isinstance(blk, BinarySSMBlock) and self.training \
-                    and os.environ.get("BLH_NO_CKPT") != "1":
+                    and os.environ.get("BLH_NO_CKPT") != "1" \
+                    and os.environ.get("BLH_FAST_SCAN") != "1":
                 x = torch.utils.checkpoint.checkpoint(
                     blk, x, use_reentrant=False)
             else:

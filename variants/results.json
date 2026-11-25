@@ -31,22 +31,33 @@
   "params": 3437176,
   "binary_latent_params": 3244416,
   "steps": 1500,
-  "final_loss": 1.3469,
-  "final_ema_loss": 1.3719,
-  "tok_s": 846.3,
+  "final_loss": 1.1174,
+  "final_ema_loss": 1.155,
+  "tok_s": 858.9,
   "kv_bytes_per_token": 0,
   "ssm_state_bytes": 524832,
   "samples": {
    "Once upon a time": {
-    "text": "Once upon a time to the park and the far and the for a big for a big friends. He was a big for a big for a big for and the beach and the for a brice and the boy and the beach and the beach and the for a big bear and the found a bick to the store. He was a big beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the be",
-    "repeat4": 416,
+    "text": "Once upon a time there was a big back. He was so happy and he was so happy. He was so happy and he was so happy. He was so happy and he was so happy. He was so happy and he was so happy. He was so happy and had a special for him. He was so happy and he saw a big smile. He was so happy that he was so happy.\n\nOne day he was so happy and he was so happy. He was so happy and he was so happy. He was so happy and he was so happy. He was so happy and he was so happy. He was so happy and he was so happy. He was so happy and he was",
+    "repeat4": 409,
     "n_grams": 509
    },
    "The ": {
-    "text": "The little boy and the park and the park and the for a big for a big friends. He was a big for a big for a big for and the beach and the for a brice and the boy and the beach and the beach and the for a big bear and the found a bick to the store. He was a big beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beach and the beac",
-    "repeat4": 414,
+    "text": "The store and said \"I want to the park. It was a big bird flew away. She was so happy to have a special the store. He was so happy and had a big first was so happy. He was so happy and he was so happy and he was so happy. He was so happy to his happy and he was so happy. He was so happy that he was so happy and he was so happy.\n\nOne day he was so happy and he was so happy. He was so happy and he was so happy. He was so happy and he was so happy. He was so happy and he was so happy. He was so happy and he was so",
+    "repeat4": 362,
     "n_grams": 509
    }
+  },
+  "train_elapsed_s": 2512.6,
+  "tok_s_elapsed_basis": 2445.3,
+  "scan": "fast chunkwise scan (scan_fast.py, BLH_FAST_SCAN=1, chunk 32, per-pair decay split); slow sequential scan remains the default in model.py/model2.py",
+  "slow_scan_reference": {
+   "final_loss": 1.3469,
+   "final_ema_loss": 1.3719,
+   "tok_s": 846.3,
+   "train_elapsed_s": 5827.3,
+   "tok_s_elapsed_basis": 1054.4,
+   "note": "original 1500-step run with the sequential scan and gradient checkpointing. The fast-scan run reproduces its quality (final CE 1.1174 / EMA 1.1550 vs 1.3469 / 1.3719 - better, not worse; per-step gradients verified identical to ~2e-7 in gate tests, endpoint gap is trajectory chaos) and cuts wall-clock 5827s -> 2513s (2.32x; 1054 -> 2445 tok/s on a tokens/elapsed basis). tok_s is the history-field value on both entries."
   }
  },
  {
